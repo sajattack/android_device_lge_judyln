@@ -15,6 +15,8 @@
 #
 
 # Inherit from those products. Most specific first.
+-include BoardConfig.mk
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
@@ -23,17 +25,15 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
--include BoardConfig.mk
 
-# Inherit some common DotOS stuff.
-$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+# Inherit some common OS stuff.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+#$(call inherit-product, vendor/divested/divestos.mk)
 
 # Overlays (inherit after vendor/cm to ensure we override it)
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-# Device identifiers
-
-PRODUCT_NAME := aosp_judyln
+PRODUCT_NAME :=lineage_judyln 
 PRODUCT_DEVICE := judyln
 PRODUCT_BRAND := lge
 PRODUCT_MANUFACTURER := LGE
